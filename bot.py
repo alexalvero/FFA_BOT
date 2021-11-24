@@ -54,7 +54,7 @@ options = Options()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 chromeDriverPATH = r"C:\Users\aza0220\chromedriver.exe"
 # driver = webdriver.Chrome(executable_path= chromeDriverPATH, options=options) # LOCAL FILE 
-driver  = webdriver.Chrome(resource_path('./driver/chromedriver.exe'),options=options) # USING FILE 
+driver  = webdriver.Chrome(resource_path('./driver/chromedriver(95.0.4638.69).exe'),options=options) # USING FILE 
 OKTA = "https://dexcom.okta.com"
 localPATH = os.path.realpath(__file__)
 folderDate = os.path.dirname(localPATH)
