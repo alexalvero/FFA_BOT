@@ -35,6 +35,8 @@ def resource_path(relative_path):
     except Exception:
         base_path = os.path.dirname(__file__)
     return os.path.join(base_path, relative_path)
+
+
  
 def get_display_name():
     GetUserNameEx = ctypes.windll.secur32.GetUserNameExW
@@ -52,7 +54,7 @@ options = Options()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 chromeDriverPATH = r"C:\Users\aza0220\chromedriver.exe"
 # driver = webdriver.Chrome(executable_path= chromeDriverPATH, options=options) # LOCAL FILE 
-driver  = webdriver.Chrome(resource_path('./driver/chromedriver.exe'),options=options) # USING FILE
+driver  = webdriver.Chrome(resource_path('./driver/chromedriver.exe'),options=options) # USING FILE 
 OKTA = "https://dexcom.okta.com"
 localPATH = os.path.realpath(__file__)
 folderDate = os.path.dirname(localPATH)
@@ -61,9 +63,13 @@ folderDatePATH = str(f"{folderDate}\{date}")
 user_name = os.getlogin()
 user_fullname = get_display_name()
 
+
+
+
 def mkFolder(folderDatePATH): 
     try: 
-        os.mkdir(folderDatePATH)
+        # os.mkdir(folderDatePATH)
+        os.mkdir(os.path.join(resource_path(folderDate), date))
     except FileExistsError or FileNotFoundError:
         pass
 
@@ -927,9 +933,9 @@ def mkSheet():
     completedList = str(f'Completed_List({date}).csv')
     Verify_List = str(f'Verify_List({date}).csv')
 
-    x: str = os.path.join(folderDatePATH, discrepancy_List)
-    y: str = os.path.join(folderDatePATH, completedList)
-    z: str = os.path.join(folderDatePATH, Verify_List)
+    x: str = os.path.join(resource_path(folderDatePATH), discrepancy_List)
+    y: str = os.path.join(resource_path(folderDatePATH), completedList)
+    z: str = os.path.join(resource_path(folderDatePATH), Verify_List)
     sheetExists1 = os.path.exists(x)
     sheetExists2 = os.path.exists(y)
     sheetExists3 = os.path.exists(z)
